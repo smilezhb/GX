@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace:命名空间,做sql隔离 ，访问sql语句时，sql的id前面要带着命名空间-->
+<mapper namespace="university">
+
+    <!--
+    id:sql语句唯一标识，不能重复。
+    parameterType:属性指明查询时使用的参数类型
+    resultType:属性指明查询返回的结果集类型。resultType="com.mq.pojo.Student"表示返回值是Student类型
+    #{}占位符:起到占位作用,如果传入的是基本类型(string,long,double,int,boolean,float等),那么#{}中的变量名称可以随意写，一般和属性名相同。
+    java.lang.Integer也可以直接写成int
+     -->
+    <select id="findAll"  resultType="com.example.bean.University">
+        select * from university
+    </select>
+
+    <select id="findByType" parameterType="java.lang.String" resultType="com.example.bean.University">
+        select * from university where type like '%${value}%'
+    </select>
+
+    <select id="findByDistrict" parameterType="java.lang.String" resultType="com.example.bean.University">
+        select * from university where district = #{district}
+    </select>
+
+
+
+
+</mapper>
